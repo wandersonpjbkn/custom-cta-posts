@@ -1,0 +1,60 @@
+/** ------------------------------------------------ */
+/** Grid System */
+/** ------------------------------------------------ */
+/** Dimensions */
+/** ------------------------------------------------ */
+/** Fonts */
+/** ------------------------------------------------ */
+.custom-cta__wrap {
+  box-sizing: border-box;
+  display: grid;
+  width: calc(100% + 20px);
+  min-height: calc(100vh - 105px);
+  margin-left: -20px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "header-area" "content-area";
+  grid-template-columns: 1fr; }
+  .custom-cta__wrap > div {
+    box-sizing: border-box; }
+
+.custom-cta__header {
+  grid-area: header-area;
+  padding: 10px 20px;
+  background-color: #00c9ff; }
+  .custom-cta__header h1,
+  .custom-cta__header p,
+  .custom-cta__header a {
+    color: #fff; }
+  .custom-cta__header small {
+    font-size: 1rem;
+    font-weight: lighter; }
+  .custom-cta__header cite {
+    font-size: .8rem;
+    text-transform: lowercase; }
+    .custom-cta__header cite::before {
+      content: '('; }
+    .custom-cta__header cite::after {
+      content: ')'; }
+  .custom-cta__header a {
+    text-decoration: none; }
+
+.custom-cta__content {
+  grid-area: content-area;
+  padding: 20px;
+  background-color: #fff; }
+  .custom-cta__content__drag {
+    display: flex;
+    width: 50%;
+    height: 100px;
+    border: 3px dashed #dcdcdc;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; }
+    .custom-cta__content__drag p {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #999;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; }

@@ -1,0 +1,16 @@
+.custom-cta__wrap {
+  $wpcontent-padding-left: 20px;
+
+  box-sizing: border-box;
+
+  display: grid;
+  width: calc(100% + #{$wpcontent-padding-left});
+  min-height: calc(100vh - #{$padding-content-bottom + 40});
+  margin-left: $wpcontent-padding-left * (-1);
+
+  grid-template-rows: auto 1fr;
+  grid-template-areas: '#{$grid-area-header}' '#{$grid-area-content}';
+  grid-template-columns: 1fr;
+
+  > div { box-sizing: border-box; }
+}

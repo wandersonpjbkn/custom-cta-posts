@@ -1,0 +1,7 @@
+# Folders
+node_modules
+.sass-cache
+
+# Files
+desktop.ini
+Thumbs.db

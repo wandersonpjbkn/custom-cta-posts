@@ -1,0 +1,24 @@
+.custom-cta__header {
+  grid-area: $grid-area-header;
+  padding: 10px $padding-content-left;
+  background-color: #00c9ff;
+
+  h1,
+  p,
+  a { color: #fff; }
+
+  small {
+    font-size: 1rem;
+    font-weight: lighter;
+  }
+
+  cite {
+    font-size: .8rem;
+    text-transform: lowercase;
+
+    &::before { content: '('; }
+    &::after { content: ')'; }
+  }
+
+  a { text-decoration: none; }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "custom-cta-posts",
+  "version": "0.0.1",
+  "description": "Single WordPress plugin to add custom images into posts",
+  "scripts": {
+    "sass-admin": "node-sass --watch src/scss/admin/main.scss admin/css/custom-cta-admin.css",
+    "sass-public": "node-sass src/scss/public/main.scss public/css/custom-cta-public.css"
+  },
+  "author": "Wanderson PJ",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "node-sass": "4.11.0"
+  }
+}
