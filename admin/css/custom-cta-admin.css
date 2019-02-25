@@ -45,11 +45,12 @@
   .custom-cta__content__drag {
     display: flex;
     width: 50%;
+    min-width: 240px;
     height: 100px;
     border: 3px dashed #dcdcdc;
     border-radius: 10px;
     background-color: #f5f5f5;
-    margin: 0 auto;
+    margin: 0 auto 40px;
     justify-content: center;
     align-items: center;
     cursor: pointer; }
@@ -58,3 +59,41 @@
       font-size: 1.2rem;
       color: #999;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; }
+  .custom-cta__content__box {
+    display: flex;
+    width: 80%;
+    margin: 0 auto 40px;
+    align-items: stretch;
+    justify-content: space-between; }
+  .custom-cta__content__img {
+    display: block;
+    width: 85%;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    margin-right: 30px; }
+    .custom-cta__content__img #target {
+      width: 100%;
+      height: 100%;
+      background: transparent url("") no-repeat center center/contain; }
+  .custom-cta__content__ctrls {
+    display: flex;
+    width: 15%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center; }
+    .custom-cta__content__ctrls > button:first-child {
+      margin-bottom: 20px; }
+
+.custom-cta__content__historic {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse; }
+  .custom-cta__content__historic thead tr {
+    background-color: #ececec; }
+  .custom-cta__content__historic tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9; }
+  .custom-cta__content__historic th,
+  .custom-cta__content__historic td {
+    padding: 5px 10px; }

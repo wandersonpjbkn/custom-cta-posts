@@ -6,12 +6,13 @@
   &__drag {
     display: flex;
     width: 50%;
+    min-width: 240px;
     height: 100px;
     border: 3px dashed #dcdcdc;
     border-radius: 10px;
     background-color: #f5f5f5;
 
-    margin: 0 auto;
+    margin: 0 auto 40px;
 
     justify-content: center;
     align-items: center;
@@ -24,6 +25,48 @@
       font-size: 1.2rem;
       color: #999;
       font-family: $font-stack;
+    }
+  }
+
+  &__box {
+    display: flex;
+    width: 80%;
+    margin: 0 auto 40px;
+
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  &__img {
+    display: block;
+    width: 85%;
+    height: 200px;
+    padding: 20px;    
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    margin-right: 30px;
+
+    #target {
+      width: 100%;
+      height: 100%;
+      background:
+        transparent
+        url('')
+        no-repeat
+        center center/contain;
+    }
+  }
+
+  &__ctrls {
+    display: flex;
+    width: 15%;
+
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+
+    > button:first-child {
+      margin-bottom: 20px;
     }
   }
 }
