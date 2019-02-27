@@ -22,6 +22,18 @@ For compile sass for `public` folder
 npm run sass-admin
 ```
 
+For compile js for `admin` folder
+
+```
+npm run js-admin
+```
+
+For compile js for `public` folder
+
+```
+npm run js-public
+```
+
 To watch sass changes
 
 - Edit `package.json`
@@ -31,16 +43,34 @@ To watch sass changes
 node-sass --watch [...]
 ```
 
+### Shortcutes
+
+For compile all js
+
+```
+npm run all-js
+```
+
+For compile all sass
+
+```
+npm run all-sass
+```
+
 ## To-do
 
 - Version #1
-  - Finish the implement of WordPress Media Uploader
-  - Handle when user select an image
-  - Put the selected image on all posts
-  - Setting up a save/cancel/delete button
+  - [x] Finish the implement of WordPress Media Uploader
+  - [x] Handle when user select an image
+  - [x] Put the selected image on all posts
+  - [x] Setting up a save/cancel/delete button
 - Version #2
-  - Add an option to choose where on the posts, the CTA should apper
-  - Add more options of CTA's. Like: video, text, etc.
+  - [ ] Add an option to choose where on the posts, the CTA should appers
+  - [ ] Add more options of CTA's, like: video, text, etc.
+- Extras
+  - [x] Add history options to pick recent posts
+  - [x] Add link option to image
+  - [x] Add log changes using localStorage to handle incoming errors
 
 ## Fonts
 
@@ -50,3 +80,12 @@ node-sass --watch [...]
 - [Media Uploader](http://qnimate.com/adding-a-single-image-using-wordpress-media-uploader/)
 - [Creating tables](https://codex.wordpress.org/Creating_Tables_with_Plugins)
 - [Ajax on WordPres](https://codex.wordpress.org/AJAX_in_Plugins)
+- [WordPress Get Image](https://developer.wordpress.org/reference/functions/wp_get_attachment_image_src/)
+
+## Changelog
+
+[See more](changelog.md)
+
+## License
+
+[Apache 2.0](LICENSE)

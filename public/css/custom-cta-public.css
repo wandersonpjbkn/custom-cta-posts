@@ -1,0 +1,11 @@
+.custom-cta__post-target {
+  display: block;
+  width: 100%;
+  height: 250px; }
+  .custom-cta__post-target a {
+    display: block; }
+  .custom-cta__post-target img {
+    display: block;
+    width: auto;
+    height: 100%;
+    margin: 0 auto; }

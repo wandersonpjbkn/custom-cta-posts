@@ -1,0 +1,59 @@
+@mixin display-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin justify_content ($align) {
+  -webkit-box-pack: $align;
+  -ms-flex-pack: $align;
+  justify-content: $align;
+}
+
+@mixin align-items ($align) {
+  -webkit-box-align: $align;
+  -ms-flex-align: $align;
+  align-items: $align;
+}
+
+@mixin flex-direction ($direction) {
+  @if $direction=='row' {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+
+  @else if $direction=='row-reverse' {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+  }
+
+  @else if $direction=='column' {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  @else if $direction=='column-reverse' {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+  }
+}
+
+@mixin user-select($value) {
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  -ms-user-select: $value;
+  user-select: $value;
+}
+
+@mixin box-sizing($size) {
+  -webkit-box-sizing: $size;
+  box-sizing: $size;
+}

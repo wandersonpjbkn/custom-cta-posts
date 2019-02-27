@@ -6,7 +6,8 @@
 /** Fonts */
 /** ------------------------------------------------ */
 .custom-cta__wrap {
-  box-sizing: border-box;
+  -webkit-box-sizing: box-border;
+  box-sizing: box-border;
   display: grid;
   width: calc(100% + 20px);
   min-height: calc(100vh - 105px);
@@ -15,7 +16,8 @@
   grid-template-areas: "header-area" "content-area";
   grid-template-columns: 1fr; }
   .custom-cta__wrap > div {
-    box-sizing: border-box; }
+    -webkit-box-sizing: box-border;
+    box-sizing: box-border; }
 
 .custom-cta__header {
   grid-area: header-area;
@@ -43,28 +45,52 @@
   padding: 20px;
   background-color: #fff; }
   .custom-cta__content__drag {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     width: 50%;
     min-width: 240px;
     height: 100px;
     border: 3px dashed #dcdcdc;
     border-radius: 10px;
     background-color: #f5f5f5;
-    margin: 0 auto 40px;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto 20px;
     cursor: pointer; }
     .custom-cta__content__drag p {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       margin: 0;
       font-size: 1.2rem;
       color: #999;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; }
+  .custom-cta__content__input {
+    width: 50%;
+    margin: 0 auto 40px; }
+    .custom-cta__content__input input {
+      width: 100%;
+      height: 40px;
+      padding: 5px 10px;
+      border-radius: 5px; }
   .custom-cta__content__box {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    width: 80%;
-    margin: 0 auto 40px;
+    -webkit-box-pack: space-between;
+    -ms-flex-pack: space-between;
+    justify-content: space-between;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
     align-items: stretch;
-    justify-content: space-between; }
+    width: 80%;
+    margin: 0 auto 40px; }
   .custom-cta__content__img {
     display: block;
     width: 85%;
@@ -78,22 +104,54 @@
       height: 100%;
       background: transparent url("") no-repeat center center/contain; }
   .custom-cta__content__ctrls {
-    display: flex;
-    width: 15%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
     align-items: stretch;
-    justify-content: center; }
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 15%; }
     .custom-cta__content__ctrls > button:first-child {
       margin-bottom: 20px; }
 
 .custom-cta__content__historic {
   width: 80%;
-  margin: 0 auto;
-  border-collapse: collapse; }
-  .custom-cta__content__historic thead tr {
-    background-color: #ececec; }
-  .custom-cta__content__historic tbody tr:nth-of-type(odd) {
-    background-color: #f9f9f9; }
-  .custom-cta__content__historic th,
-  .custom-cta__content__historic td {
-    padding: 5px 10px; }
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0 auto; }
+  .custom-cta__content__historic table {
+    width: 100%;
+    border-collapse: collapse; }
+    @supports (position: sticky) {
+      .custom-cta__content__historic table thead {
+        position: sticky;
+        top: 0; } }
+    .custom-cta__content__historic table thead > tr {
+      background-color: #ececec;
+      border-bottom: 1px solid #dcdcdc; }
+      .custom-cta__content__historic table thead > tr :not(:last-child) {
+        border-right: 1px solid #cdcdcd; }
+    .custom-cta__content__historic table tbody > tr {
+      border-bottom: 1px solid #dcdcdc; }
+      .custom-cta__content__historic table tbody > tr:nth-of-type(odd) {
+        background-color: #f9f9f9; }
+      .custom-cta__content__historic table tbody > tr :not(:last-child) {
+        border-right: 1px solid #dcdcdc; }
+    .custom-cta__content__historic table th,
+    .custom-cta__content__historic table td {
+      padding: 5px 10px; }
+    .custom-cta__content__historic table.active td {
+      text-align: center; }
+    .custom-cta__content__historic table.active img {
+      max-width: 100px;
+      height: 50px; }
+    .custom-cta__content__historic table.active button span {
+      vertical-align: middle; }

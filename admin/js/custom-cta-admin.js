@@ -1,83 +1,134 @@
+"use strict";
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 /** Class to handle Custom CTA image insert */
-class MediaUploader {
+var MediaUploader =
+/*#__PURE__*/
+function () {
   /** Class constructor */
-  constructor(mediaUploader) {
+  function MediaUploader(mediaUploader) {
+    _classCallCheck(this, MediaUploader);
+
     this.mediaUploader = mediaUploader;
   }
-  /** get selet field ot display selected image */
+  /** Get select field ot display selected image */
 
 
-  get targetField() {
-    return document.querySelector('.custom-cta__content__img > #target');
-  }
-  /** Open WordPress Media Insert */
+  _createClass(MediaUploader, [{
+    key: "openMediaUploaderImage",
+
+    /** Open WordPress Media Insert */
+    value: function openMediaUploaderImage() {
+      var _this = this;
+
+      /** Call wp object from window */
+      var _wp = window.wp || null;
+      /** Return if wp doesn't exist */
 
 
-  openMediaUploaderImage() {
-    /** Call wp object from window */
-    const _wp = window.wp || null;
-    /** Return if wp doesn't exist */
+      if (!_wp) return;
+      /** Setting up media uploads */
+
+      this.mediaUploader = _wp.media({
+        frame: 'post',
+        state: 'insert',
+        multiple: false
+      });
+      /** Set a event on insert image */
+
+      this.mediaUploader.on('insert', function () {
+        var json = _this.mediaUploader.state().get('selection').first().toJSON();
+        /** Fire selected image to target field */
 
 
-    if (!_wp) return;
-    /** Setting up media uploads */
+        _this.writeImageOnSelectField(json);
+      });
+      this.mediaUploader.open();
+    }
+    /** Clear target background */
 
-    this.mediaUploader = _wp.media({
-      frame: 'post',
-      state: 'insert',
-      multiple: false
-    });
-    /** Set a event on insert image */
+  }, {
+    key: "cleanTargetBackgroud",
+    value: function cleanTargetBackgroud() {
+      this.writeImageOnSelectField({
+        id: 0,
+        url: ''
+      });
+    }
+    /** Set a image to target div */
 
-    this.mediaUploader.on('insert', () => {
-      const json = this.mediaUploader.state().get('selection').first().toJSON();
-      /** Set data-id to target */
+  }, {
+    key: "writeImageOnSelectField",
+    value: function writeImageOnSelectField(data) {
+      /** Looking for target on DOM */
+      var el = this.targetImgField;
+      /** Return if target doesn't exists */
 
-      this.targetField.dataset.id = json.id;
-      /** Fire selected image to target field */
+      if (!el) return;
+      /** Set img id as data-id of target */
 
-      this.writeImageOnSelectField(json.url);
-    });
-    this.mediaUploader.open();
-  }
-  /** Clear target background */
+      el.dataset.id = data.id;
+      /** Set url as default background-image of target */
 
+      var url = String(data.url).replace(/\\/g, '');
+      el.style.backgroundImage = "url(".concat(url, ")");
+      data.destiny ? this.targetTextField.value = data.destiny : this.targetTextField.value = '';
+    }
+    /** Fire php publish */
 
-  cleanTargetBackgroud() {
-    this.writeImageOnSelectField();
-  }
-  /** Set a image to target div */
+  }, {
+    key: "publish",
+    value: function publish() {
+      var _jQuery = window.jQuery;
+      var _ajaxUrl = window.ajaxurl;
+      if (!_jQuery || !_ajaxUrl) return;
+      var id = parseInt(this.targetImgField.dataset.id);
+      var text = this.targetTextField.value;
 
+      if (id === 0 || id === undefined) {
+        window.confirm('Alert\nNenhuma imagem selecionada. Prosseguir mesmo assim?');
+      }
 
-  writeImageOnSelectField(url) {
-    /** Looking for target on DOM */
-    const el = this.targetField;
-    /** Return if target doesn't exists */
+      var data = {
+        action: 'publishCta',
+        imgId: id,
+        pageDestiny: text
+      };
 
-    if (!el) return;
-    /** Set url as default background-image of target */
+      _jQuery.post(_ajaxUrl, data, function (response) {
+        function messageOk() {
+          window.alert('Info\nCTA publicado!');
+          document.location.reload(true);
+        }
 
-    el.style.backgroundImage = `url(${url})`;
-  }
-  /** Fire php publish */
+        response = JSON.parse(response);
+        response.warning !== undefined ? window.alert("Alerta\n".concat(response.warning)) : response['historic']['img_id'] === undefined || response['current']['img_id'] === undefined ? window.alert('Erro\nFalha solicitação. Contate o desenvolvedor') : messageOk();
+        window.localStorage.setItem('ctaPostLog', JSON.stringify(response));
+      });
+    }
+  }, {
+    key: "targetImgField",
+    get: function get() {
+      return document.querySelector('.custom-cta__content__img > #target');
+    }
+    /** Get selet field to display selected image */
 
+  }, {
+    key: "targetTextField",
+    get: function get() {
+      return document.querySelector('.custom-cta__content__input > input');
+    }
+  }]);
 
-  publish() {
-    const _jQuery = window.jQuery;
-    const _ajaxUrl = window.ajaxurl;
-    if (!_jQuery || !_ajaxUrl) return;
-    const id = this.targetField.dataset.id;
-    const data = {
-      action: 'publishCta',
-      imgId: id
-    };
-
-    _jQuery.post(_ajaxUrl, data, res => console.log(res));
-  }
-
-}
+  return MediaUploader;
+}();
 /** Instance class */
 // eslint-disable-next-line no-unused-vars
 
 
-const mediaUploader = new MediaUploader();
+var mediaUploader = new MediaUploader();
