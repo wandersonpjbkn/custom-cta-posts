@@ -84,7 +84,7 @@ npm run all-sass
 
 ## Changelog
 
-[See more](changelog.md)
+[See more](CHANGELOG.md)
 
 ## License
 
