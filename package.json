@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "description": "Single WordPress plugin to add custom images into posts",
   "scripts": {
-    "sass-admin": "node-sass src/scss/admin/main.scss admin/css/custom-cta-admin.css",
-    "sass-public": "node-sass src/scss/public/main.scss public/css/custom-cta-public.css",
-    "js-admin": "babel src/js/admin/main.js --out-file admin/js/custom-cta-admin.js",
-    "js-public": "babel src/js/public/main.js --out-file public/js/custom-cta-public.js",
+    "sass-admin": "node-sass src/scss/admin/main.scss dist/admin/css/custom-cta-admin.css",
+    "sass-public": "node-sass src/scss/public/main.scss dist/public/css/custom-cta-public.css",
+    "js-admin": "babel src/js/admin/main.js --out-file dist/admin/js/custom-cta-admin.js",
+    "js-public": "babel src/js/public/main.js --out-file dist/public/js/custom-cta-public.js",
     "all-js": "npm run js-admin && npm run js-public",
     "all-sass": "npm run sass-admin && npm run sass-public"
   },
