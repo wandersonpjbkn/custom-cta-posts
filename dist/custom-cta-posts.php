@@ -3,7 +3,7 @@
  * Plugin Name: Custom CTA
  * Plugin URI:  https://github.com/wandersonpjbkn/custom-cta-posts
  * Description: Plugin para adição de call to action nos posts de um website
- * Version:     1.1.0
+ * Version:     1.1.2
  * Author:      Wanderson PJ
  * Author URI:  https://github.com/wandersonpjbkn
  * License:     Apache 2.0
@@ -32,7 +32,7 @@ class Custom_CTA {
    */
   public static function get_instance() {
     /** Create a new instance of this class if isn't already created */
-    if (null == self::$instance)
+    if ( null == self::$instance )
       self::$instance = new self;
 
     return self::$instance;
@@ -101,7 +101,7 @@ class Custom_CTA {
   }
 
   /** Return default table name @return string */
-  private function get_table_name($sufix) {
+  private function get_table_name( $sufix ) {
     global $wpdb;
 
     $surname      = self::$tb_surname;
@@ -111,7 +111,7 @@ class Custom_CTA {
   }
 
   /** Return plugin data @return string|array */
-  private function get_plugin_dt($key) {
+  private function get_plugin_dt( $key ) {
     $data         = get_plugin_data( __FILE__ );
     $response     = array(
       'name'        => $data[ 'Name' ],
@@ -122,7 +122,7 @@ class Custom_CTA {
       'author'      => $data[ 'Author' ],
       'authorUri'   => $data[ 'AuthorURI' ],
       'domainText'  => $data[ 'TextDomain' ],
-      'domainPath'  => $data[ 'DomainPath '],
+      'domainPath'  => $data[ 'DomainPath' ],
       'title'       => $data[ 'Title' ],
       'authorName'  => $data[ 'AuthorName' ]
     );
@@ -206,7 +206,7 @@ class Custom_CTA {
     $tb_collate   = $wpdb->get_charset_collate();
 
     // Prevent table creation if already exists
-    if ($wpdb->get_var( "SHOW TABLES LIKE '$tb_name'" ) == $tb_name)
+    if ( $wpdb->get_var( "SHOW TABLES LIKE '$tb_name'" ) == $tb_name )
 		  return;
 
     // Create table if not exists
@@ -237,7 +237,7 @@ class Custom_CTA {
     $tb_collate   = $wpdb->get_charset_collate();
 
     // Prevent table creation if already exists
-    if ($wpdb->get_var( "SHOW TABLES LIKE '$tb_name'" ) == $tb_name)
+    if ( $wpdb->get_var( "SHOW TABLES LIKE '$tb_name'" ) == $tb_name )
 		  return;
 
     // Create table if not exists
@@ -268,7 +268,7 @@ class Custom_CTA {
   }
 
   /** Insert data into historic table */
-  private function add_data_to_historic($img_id, $text) {
+  private function add_data_to_historic( $img_id, $text ) {
     global $wpdb;
     
     $tb_name      = $this->get_table_name( 'historic' );
@@ -281,9 +281,9 @@ class Custom_CTA {
     
     $wpdb->insert( $tb_name, $tb_data );
     
-    if ($wpdb->last_error !== '') {
+    if ( $wpdb->last_error !== '' ) {
       return json_encode(
-        array('historic' => $wpdb->last_error ),
+        array( 'historic' => $wpdb->last_error ),
         JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
     } else {
       return $tb_data;
@@ -291,7 +291,7 @@ class Custom_CTA {
   }
 
   /** Updated data into current table */
-  private function add_data_to_current($img_id, $page_destiny) {
+  private function add_data_to_current( $img_id, $page_destiny ) {
     global $wpdb;
 
     $last         = $this->get_last_historic();
@@ -305,9 +305,9 @@ class Custom_CTA {
     
     $wpdb->update( $tb_name, $tb_data, $tb_where );
     
-    if ($wpdb->last_error !== '') {
+    if ( $wpdb->last_error !== '' ) {
       return json_encode(
-        array('current' => $wpdb->last_error ),
+        array( 'current' => $wpdb->last_error ),
         JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
     } else {
       return $tb_data;
@@ -316,7 +316,7 @@ class Custom_CTA {
 
   /** OTHERS */
   /** Return the last register of the table informed */
-  private function search_last_item($table) {
+  private function search_last_item( $table ) {
     global $wpdb;
 
     $tb_name      = $this->get_table_name( $table );
@@ -328,20 +328,22 @@ class Custom_CTA {
       OBJECT
     );
 
-    if ($wpdb->last_error !== '') {
+    if ( $wpdb->last_error !== '' ) {
       return json_encode(
-        array('search_last' => $wpdb->last_error ),
-        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
-    }
-    else {
+        array( 'search_last' => $wpdb->last_error ),
+        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
+      );
+    } else if ( array_key_exists( '0', $res ) ) {
       return $res[0];
+    } else {
+      return '';
     }
   }
 
   /** Handle publication option */
   public function publish_cta() {
-    $img_id         = intval( $_POST['imgId'] );
-    $page_destiny   = $_POST['pageDestiny'];
+    $img_id         = intval( $_POST[ 'imgId' ] );
+    $page_destiny   = $_POST[ 'pageDestiny' ];
     $current        = $this->get_current_data();
 
     if ( $page_destiny == $current->page_destiny && $img_id == intval( $current->img_id ) ) {
@@ -349,8 +351,8 @@ class Custom_CTA {
       wp_die();
     }
 
-    $res1       = $this->add_data_to_historic($img_id, $page_destiny);
-    $res2       = $this->add_data_to_current($img_id, $page_destiny);
+    $res1       = $this->add_data_to_historic( $img_id, $page_destiny );
+    $res2       = $this->add_data_to_current( $img_id, $page_destiny );
 
     echo json_encode(
       array(
@@ -368,11 +370,11 @@ class Custom_CTA {
       <div class="custom-cta__header">
 
         <h1>
-          <?= esc_html( $this->get_plugin_dt('name') ); ?>
-          <small>v<?= esc_html( $this->get_plugin_dt('version') ); ?></small>
+          <?= esc_html( $this->get_plugin_dt( 'name' ) ); ?>
+          <small>v<?= esc_html( $this->get_plugin_dt( 'version' ) ); ?></small>
         </h1>
 
-        <p><?= html_entity_decode( $this->get_plugin_dt('description') ); ?></p>
+        <p><?= html_entity_decode( $this->get_plugin_dt( 'description' ) ); ?></p>
 
       </div>
     <?php
@@ -393,7 +395,7 @@ class Custom_CTA {
         <input
             type="text"
             placeholder="Definir página de destino"
-            value="<?= esc_html($current->page_destiny) ?>">
+            value="<?= esc_html( $current->page_destiny ) ?>">
       </div>
 
       <div class='custom-cta__content__box'>
@@ -403,7 +405,7 @@ class Custom_CTA {
           <div
             id="target"
             data-id="<?= esc_html( $current->img_id ) ?>"
-            style="background-image: url('<?= esc_url($img[0]) ?>')"></div>
+            style="background-image: url(' <?= esc_url( $img[0] ) ?> ')"></div>
         <?php else : ?>
           <div id="target"></div>
         <?php endif ?>
@@ -427,7 +429,7 @@ class Custom_CTA {
     global $wpdb;
 
     $last         = $this->get_last_historic();
-    $tb_name      = $this->get_table_name('historic');
+    $tb_name      = $this->get_table_name( 'historic' );
 
     if ( empty( $last ) ) :
       ?>
@@ -461,7 +463,7 @@ class Custom_CTA {
           </thead>
           <tbody>
           <?php
-            foreach ($historic as $value) {
+            foreach ( $historic as $value ) {
               ?>
               <tr>
                 <td><?= esc_html( $value->id ) ?></td>
@@ -475,8 +477,8 @@ class Custom_CTA {
                 <td><?= esc_html( $value->page_destiny ) ?></td>
                 <td>
                   <?php
-                    $user = get_user_by('id', $value->user_id);
-                    echo esc_html($user->first_name);                
+                    $user = get_user_by( 'id', $value->user_id );
+                    echo esc_html( $user->first_name );                
                   ?>
                 </td>              
                 <td><?= esc_html( $value->time ) ?></td>
@@ -486,14 +488,14 @@ class Custom_CTA {
                     array(
                       "id" => esc_html( $value->img_id ),
                       "url" => esc_html( $img[0] ),
-                      "destiny" => esc_url($value->page_destiny)
+                      "destiny" => esc_url( $value->page_destiny )
                     ),
                     JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
                   );
                   ?>
                   <button
                     class="button button-primary"
-                    onclick="mediaUploader.writeImageOnSelectField(<?= esc_html( $data ) ?>)">
+                    onclick="mediaUploader.writeImageOnSelectField( <?= esc_html( $data ) ?> )">
                     <span class="dashicons dashicons-yes"></span>
                   </button>
                 </td>
@@ -528,17 +530,19 @@ class Custom_CTA {
   }
 
   /** Draw CTA on posts */
-  public function generate_cta_on_post($content) {
+  public function generate_cta_on_post( $content ) {
     $current_data       = $this->get_current_data();
     $current_image      = $this->get_current_image();
 
-    if ($current_data->img_id == 0)
+    if ( $current_data->img_id == 0 )
       return $content;
 
     if ( is_single() ) {
 
-      if ( is_product() )
-        return $content;
+      if ( function_exists( 'is_product' ) ) {
+        if ( is_product() ) 
+          return $content;
+      }
 
       $cta = "<div class=\"custom-cta__post-target\">
         <a href='$current_data->page_destiny' target=\"_blank\">

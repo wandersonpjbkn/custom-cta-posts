@@ -1,5 +1,11 @@
 # Changelog
 
+## Release v1.1.2
+
+- Security update
+- Fixed the condition that use WooCommerce `is_product` function, when WooCommerce itself isn't installed
+- Fixed the return of data when there's no previous custom posts in historic
+
 ## Release v1.1.1
 
 - Ordered folders

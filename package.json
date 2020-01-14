@@ -1,6 +1,6 @@
 {
   "name": "custom-cta-posts",
-  "version": "0.0.1",
+  "version": "1.1.2",
   "description": "Single WordPress plugin to add custom images into posts",
   "scripts": {
     "sass-admin": "node-sass src/scss/admin/main.scss dist/admin/css/custom-cta-admin.css",
@@ -13,18 +13,18 @@
   "author": "Wanderson PJ",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "eslint": "^5.14.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "node-sass": "4.11.0"
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "node-sass": "4.13.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5"
+    "@babel/polyfill": "^7.8.3"
   }
 }

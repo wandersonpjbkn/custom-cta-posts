@@ -2,35 +2,41 @@
 
 This is a WordPress Plugin, to simple add a call to action on all posts of a website.
 
-## Commands
+## Install on production
+
+1. Create a folder in `wp-content/plugins` named `cta-posts`
+
+2. Into this folder, paste all the content from `dist` folder
+
+## Dev commands
 
 To install dependencies:
 
-```
+```bash
 npm i
 ```
 
-For compile sass for `admin` folder
+Compile sass for `admin` folder
 
-```
+```bash
 npm run sass-admin
 ```
 
-For compile sass for `public` folder
+Compile sass for `public` folder
 
-```
+```bash
 npm run sass-admin
 ```
 
-For compile js for `admin` folder
+Compile js for `admin` folder
 
-```
+```bash
 npm run js-admin
 ```
 
-For compile js for `public` folder
+Compile js for `public` folder
 
-```
+```bash
 npm run js-public
 ```
 
@@ -39,21 +45,21 @@ To watch sass changes
 - Edit `package.json`
 - Search the sass you want to watch, and set like this where `[...]` is the rest of the code without changes
 
-```
+```bash
 node-sass --watch [...]
 ```
 
-### Shortcutes
+## Shortcutes
 
-For compile all js
+Compile all js
 
-```
+```bash
 npm run all-js
 ```
 
-For compile all sass
+Compile all sass
 
-```
+```bash
 npm run all-sass
 ```
 
